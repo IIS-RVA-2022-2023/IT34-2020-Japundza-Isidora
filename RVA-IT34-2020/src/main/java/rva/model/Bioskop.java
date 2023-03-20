@@ -3,6 +3,9 @@ package rva.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,7 +28,8 @@ public class Bioskop implements Serializable {
 	private String naziv;
 	private String adresa;
 	
-	@OneToMany(mappedBy = "bioskop")
+	@JsonIgnore
+	@OneToMany(mappedBy = "bioskop", cascade = CascadeType.REMOVE)
 	private List<Sala> sale;
 	
 	public Bioskop() {

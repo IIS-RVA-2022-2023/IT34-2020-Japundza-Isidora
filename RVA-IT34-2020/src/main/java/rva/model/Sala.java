@@ -3,6 +3,8 @@ package rva.model;
 import java.io.Serializable;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,6 +30,7 @@ public class Sala implements Serializable {
 	@JoinColumn(name = "bioskop")
 	private Bioskop bioskop;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "sala")
 	private List<Rezervacija> rezervacije;
 	
