@@ -15,6 +15,7 @@ public class BioskopService {
 	@Autowired
 	private BioskopRepository repo;
 	
+	
 	public List<Bioskop> getAll() { 
 		return repo.findAll();
 	}
