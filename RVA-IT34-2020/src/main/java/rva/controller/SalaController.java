@@ -23,86 +23,91 @@ public class SalaController {
 
 	@Autowired
 	private SalaService service;
-	
+
 	@Autowired
 	private BioskopService bioskopService;
-	
+
 	@GetMapping("/sala")
 	public List<Sala> getAllSala() {
 		return service.getAll();
 	}
-	
+
 	@GetMapping("/sala/{id}")
 	public ResponseEntity<?> findSalaById(@PathVariable long id) {
-		if(service.findById(id).isPresent()) {
+		if (service.findById(id).isPresent()) {
 			Sala sala = service.findById(id).get();
 			return ResponseEntity.ok(sala);
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Requested resource with ID: " + id + "has not been found.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("Requested resource with ID: " + id + "has not been found.");
 		}
 	}
-		
+
 	@GetMapping("/sala/kapacitet/{kapacitet}")
 	public ResponseEntity<?> findSalaByKapacitetGreaterThan(@PathVariable int kapacitet) {
-		if(service.findByKapacitet(kapacitet).get().isEmpty()) {
+		if (service.findByKapacitet(kapacitet).get().isEmpty()) {
 			return ResponseEntity.ok(service.findByKapacitet(kapacitet).get());
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resources with requested kapacitet: " + kapacitet + " has not been found.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("Resources with requested kapacitet: " + kapacitet + " has not been found.");
 		}
 	}
-	
+
 	@GetMapping("/sala/bioskop/{id}")
 	public ResponseEntity<?> getSalaByBioskop(@PathVariable long id) {
-		if(!service.findSalaByBioskop(bioskopService.getById(id).get()).get().isEmpty()) {
+		if (!service.findSalaByBioskop(bioskopService.getById(id).get()).get().isEmpty()) {
 			return ResponseEntity.ok(service.findSalaByBioskop(bioskopService.getById(id).get()).get());
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource with requested value of foreign key bioskop: " + id + " have not been found.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("Resource with requested value of foreign key bioskop: " + id + " have not been found.");
 		}
 	}
-	
+
 	@PostMapping("/sala")
 	public ResponseEntity<Sala> createSala(@RequestBody Sala sala) {
 		Sala savedSala;
-		
-		if(!service.existsById(sala.getId())) {
+
+		if (!service.existsById(sala.getId())) {
 			savedSala = service.addSala(sala);
 		} else {
 			List<Sala> lista = service.getAll();
 			long najvecaVrednost = 1;
-			for(int i = 0; i < lista.size(); i++) {
-				if(najvecaVrednost <= lista.get(i).getId()) {
+			for (int i = 0; i < lista.size(); i++) {
+				if (najvecaVrednost <= lista.get(i).getId()) {
 					najvecaVrednost = lista.get(i).getId();
 				}
-				if(i == lista.size()-1) {
+				if (i == lista.size() - 1) {
 					najvecaVrednost++;
 				}
 			}
 			sala.setId(najvecaVrednost);
 			savedSala = service.addSala(sala);
 		}
-		
+
 		URI uri = URI.create("/sala/" + savedSala.getId());
 		return ResponseEntity.created(uri).body(savedSala);
 	}
-	
+
 	@PutMapping("/sala/{id}")
-	public ResponseEntity<?> updateSala(@RequestBody Sala sala, @PathVariable long id){
-		if(service.existsById(id)) {
+	public ResponseEntity<?> updateSala(@RequestBody Sala sala, @PathVariable long id) {
+		if (service.existsById(id)) {
 			return ResponseEntity.ok(service.addSala(sala));
-			//Sala savedSala = service.addSala(sala);
-			//return ResponseEntity.ok(savedSala);
+			// Sala savedSala = service.addSala(sala);
+			// return ResponseEntity.ok(savedSala);
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource with requested ID: " + id + " has not been found.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("Resource with requested ID: " + id + " has not been found.");
 		}
 	}
-	
+
 	@DeleteMapping("/sala/{id}")
 	public ResponseEntity<String> deleteSala(@PathVariable long id) {
-		if(service.existsById(id)) {
+		if (service.existsById(id)) {
 			service.deleteById(id);
-			return ResponseEntity.ok("Resource with requested ID: " + id + " has been deleted."); 
+			return ResponseEntity.ok("Resource with requested ID: " + id + " has been deleted.");
 		} else {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Resource with requested ID: " + id + " has not been deleted.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND)
+					.body("Resource with requested ID: " + id + " has not been deleted.");
 		}
 	}
 }

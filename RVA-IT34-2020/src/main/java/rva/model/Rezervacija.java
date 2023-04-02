@@ -15,26 +15,26 @@ import jakarta.persistence.SequenceGenerator;
 public class Rezervacija implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@SequenceGenerator(name = "REZERVACIJA_ID_GENERATOR", sequenceName = "REZERVACIJA_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REZERVACIJA_ID_GENERATOR")
 	private long id;
-	private int broj_osoba;
-	private double cena_karte;
+	private int brojOsoba;
+	private double cenaKarte;
 	private Date datum;
 	private boolean placeno;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "film")
 	private Film film;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "sala")
 	private Sala sala;
-	
+
 	public Rezervacija() {
-		
+
 	}
 
 	public long getId() {
@@ -45,20 +45,20 @@ public class Rezervacija implements Serializable {
 		this.id = id;
 	}
 
-	public int getBroj_osoba() {
-		return broj_osoba;
+	public int getBrojOsoba() {
+		return brojOsoba;
 	}
 
-	public void setBroj_osoba(int broj_osoba) {
-		this.broj_osoba = broj_osoba;
+	public void setBrojOsoba(int brojOsoba) {
+		this.brojOsoba = brojOsoba;
 	}
 
-	public double getCena_karte() {
-		return cena_karte;
+	public double getCenaKarte() {
+		return cenaKarte;
 	}
 
-	public void setCena_karte(double cena_karte) {
-		this.cena_karte = cena_karte;
+	public void setCenaKarte(double cenaKarte) {
+		this.cenaKarte = cenaKarte;
 	}
 
 	public Date getDatum() {
@@ -92,6 +92,4 @@ public class Rezervacija implements Serializable {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-	
-	
 }

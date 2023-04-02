@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,22 +14,22 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import rva.model.Bioskop;
-import rva.service.BioskopService;
+import rva.model.Film;
+import rva.service.FilmService;
 
 @RestController
-public class BioskopController {
+public class FilmController {
 
 	@Autowired
-	private BioskopService service;
+	private FilmService service;
 
-	@GetMapping("/bioskop")
-	public List<Bioskop> getAllBioskop() {
+	@GetMapping("/film")
+	public List<Film> getAllFilm() {
 		return service.getAll();
 	}
 
-	@GetMapping("/bioskop/{id}")
-	public ResponseEntity<?> getBioskopById(@PathVariable long id) {
+	@GetMapping("/film/{id}")
+	public ResponseEntity<?> getFilmById(@PathVariable long id) {
 		if (service.existsById(id)) {
 			return ResponseEntity.ok(service.getById(id).get());
 		} else {
@@ -38,25 +37,25 @@ public class BioskopController {
 		}
 	}
 
-	@GetMapping("/bioskop/naziv/{naziv}")
-	public ResponseEntity<?> getBioskopByNaziv(@PathVariable String naziv) {
-		List<Bioskop> bioskopi = service.getByNaziv(naziv).get();
-		if (!bioskopi.isEmpty()) {
-			return ResponseEntity.ok(bioskopi);
+	@GetMapping("/film/naziv/{naziv}")
+	public ResponseEntity<?> getFilmByNaziv(@PathVariable String naziv) {
+		List<Film> filmovi = service.getByNaziv(naziv).get();
+		if (!filmovi.isEmpty()) {
+			return ResponseEntity.ok(filmovi);
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("Resources with requested naziv: " + naziv + " are not found.");
 		}
 	}
 
-	@PostMapping("/bioskop")
-	public ResponseEntity<?> createBioskop(@RequestBody Bioskop bioskop) {
-		Bioskop savedBioskop;
+	@PostMapping("/film")
+	public ResponseEntity<?> createFilm(@RequestBody Film film) {
+		Film savedFilm;
 
-		if (!service.existsById(bioskop.getId())) {
-			savedBioskop = service.addBioskop(bioskop);
+		if (!service.existsById(film.getId())) {
+			savedFilm = service.addFilm(film);
 		} else {
-			List<Bioskop> lista = service.getAll();
+			List<Film> lista = service.getAll();
 			long najvecaVrednost = 1;
 			for (int i = 0; i < lista.size(); i++) {
 				if (najvecaVrednost <= lista.get(i).getId()) {
@@ -66,28 +65,27 @@ public class BioskopController {
 					najvecaVrednost++;
 				}
 			}
-			bioskop.setId(najvecaVrednost);
-			savedBioskop = service.addBioskop(bioskop);
+			film.setId(najvecaVrednost);
+			savedFilm = service.addFilm(film);
 		}
 
-		URI uri = URI.create("/bioskop/" + savedBioskop.getId());
-		return ResponseEntity.created(uri).body(savedBioskop);
+		URI uri = URI.create("/film/" + savedFilm.getId());
+		return ResponseEntity.created(uri).body(savedFilm);
 	}
 
-	@PutMapping("/bioskop/{id}")
-	public ResponseEntity<?> updateBioskop(@RequestBody Bioskop bioskop, @PathVariable long id) {
+	@PutMapping("/film/{id}")
+	public ResponseEntity<?> updateFilm(@RequestBody Film film, @PathVariable long id) {
 		if (service.existsById(id)) {
-			Bioskop savedBioskop = service.addBioskop(bioskop);
-			return ResponseEntity.ok(savedBioskop);
+			Film savedFilm = service.addFilm(film);
+			return ResponseEntity.ok(savedFilm);
 		} else {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("Resource with requested ID: " + id + " has not been found.");
-
 		}
 	}
 
-	@DeleteMapping("/bioskop/{id}")
-	public ResponseEntity<String> deleteBioskop(@PathVariable long id) {
+	@DeleteMapping("/film/{id}")
+	public ResponseEntity<String> deleteFilm(@PathVariable long id) {
 		if (service.existsById(id)) {
 			service.deleteById(id);
 			return ResponseEntity.ok("Resource with requested ID: " + id + " has been deleted.");

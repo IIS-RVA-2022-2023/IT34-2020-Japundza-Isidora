@@ -15,38 +15,37 @@ public class SalaService {
 
 	@Autowired
 	private SalaRepository repo;
-	
-	public List<Sala> getAll() { 
+
+	public List<Sala> getAll() {
 		return repo.findAll();
 	}
 
-	public Optional<Sala> findById(long id) { 
+	public Optional<Sala> findById(long id) {
 		return repo.findById(id);
 	}
-	
+
 	public Optional<List<Sala>> findByKapacitet(int kapacitet) {
 		Optional<List<Sala>> lista = Optional.of(repo.findByKapacitetGreaterThanOrderById(kapacitet));
 		return lista;
 	}
-	
+
 	public Optional<List<Sala>> findSalaByBioskop(Bioskop bioskop) {
 		Optional<List<Sala>> lista = Optional.of(repo.findByBioskop(bioskop));
 		return lista;
 	}
-	//na osnovu toga konstruise query 
-	
-	public Sala addSala(Sala sala) { 
+
+	public Sala addSala(Sala sala) {
 		return repo.save(sala);
 	}
-	
+
 	public boolean existsById(long id) {
-		if(findById(id).isPresent()) {
+		if (findById(id).isPresent()) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public void deleteById(long id) {
 		repo.deleteById(id);
 	}

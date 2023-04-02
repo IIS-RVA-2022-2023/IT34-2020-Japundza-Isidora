@@ -25,18 +25,18 @@ public class Sala implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SALA_ID_GENERATOR")
 	private long id;
 	private int kapacitet;
-	private int broj_redova;
-	
+	private int brojRedova;
+
 	@ManyToOne
 	@JoinColumn(name = "bioskop")
 	private Bioskop bioskop;
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "sala", cascade = CascadeType.REMOVE)
 	private List<Rezervacija> rezervacije;
-	
+
 	public Sala() {
-		
+
 	}
 
 	public long getId() {
@@ -55,12 +55,12 @@ public class Sala implements Serializable {
 		this.kapacitet = kapacitet;
 	}
 
-	public int getBroj_redova() {
-		return broj_redova;
+	public int getBrojRedova() {
+		return brojRedova;
 	}
 
-	public void setBroj_redova(int broj_redova) {
-		this.broj_redova = broj_redova;
+	public void setBrojRedova(int brojRedova) {
+		this.brojRedova = brojRedova;
 	}
 
 	public Bioskop getBioskop() {
@@ -78,6 +78,4 @@ public class Sala implements Serializable {
 	public void setRezervacije(List<Rezervacija> rezervacije) {
 		this.rezervacije = rezervacije;
 	}
-	
-	
 }

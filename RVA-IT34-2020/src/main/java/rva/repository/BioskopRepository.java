@@ -8,5 +8,5 @@ import rva.model.Bioskop;
 
 public interface BioskopRepository extends JpaRepository<Bioskop, Long> {
 
-	List<Bioskop> findByNazivContainingIgnoreCase(String naziv); 
+	List<Bioskop> findByNazivContainingIgnoreCase(String naziv);
 }
