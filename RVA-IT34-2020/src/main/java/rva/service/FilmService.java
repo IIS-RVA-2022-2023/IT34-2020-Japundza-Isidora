@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import rva.model.Film;
 import rva.repository.FilmRepository;
 
+@Service
 public class FilmService {
 
 	@Autowired
@@ -26,7 +28,7 @@ public class FilmService {
 		return filmovi;
 	}
 
-	public Film addBioskop(Film film) {
+	public Film addFilm(Film film) {
 		return repo.save(film);
 	}
 
