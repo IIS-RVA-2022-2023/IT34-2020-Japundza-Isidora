@@ -1,0 +1,57 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+.about-us {
+  position: relative;
+  text-align: center;
+  color: #fff;
+  height: 100vh;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("C:\Users\Lenovo\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\rva_IT34_2020\repository\IT-34-2020-FrontEnd\images\background.png");
+  background-size: cover;
+  filter: brightness(0.6);
+  z-index: -1;
+}
+
+.content {
+  padding: 50px;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  text-align: left;
+  color: black;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  text-align: left;
+  color: black;
+}
+
+button {
+  background-color: #871d00;
+  color: white;
+  padding: 14px 28px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 20%;
+  position: absolute;
+  left: 13%;
+  top: 25%;
+}

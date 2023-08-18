@@ -1,0 +1,101 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.column {
+  width: 50%;
+  margin-top: 50px;
+  margin-left: 30px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  margin: 8px;
+}
+
+.about-section {
+  text-align: center;
+  background-color: #927f16;
+  color: white;
+}
+
+.container {
+  padding: 0 16px;
+}
+
+.container::after,
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: black;
+  text-align: center;
+}
+
+.button {
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.button:hover {
+  background-color: #555;
+}
+
+@media screen and (max-width: 650px) {
+  .column {
+    width: 100%;
+    display: block;
+  }
+}
+
+h2 {
+  text-align: center;
+  color: black;
+}
+
+.mail {
+  text-align: center;
+  color: black;
+}
+
+img {
+  background-image: url("C:\Users\Lenovo\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\rva_IT34_2020\repository\IT-34-2020-FrontEnd\images\autor.jpg");
+  border-radius: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("C:\Users\Lenovo\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\rva_IT34_2020\repository\IT-34-2020-FrontEnd\images\background.png");
+  background-size: cover;
+  filter: brightness(0.6);
+  z-index: -1;
+}

@@ -1,0 +1,95 @@
+<mat-toolbar>
+  <span class="title-center">Rezervacija</span>
+</mat-toolbar>
+
+<div class="container mat-elavation-z8">
+  <mat-table #table [dataSource]="dataSource" class="mat-cell">
+    <!--ID-->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+    </ng-container>
+    <!--BrojOsoba-->
+    <ng-container matColumnDef="brojOsoba">
+      <mat-header-cell *matHeaderCellDef>Broj osoba</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.brojOsoba }}</mat-cell>
+    </ng-container>
+    <!--CenaKarte-->
+    <ng-container matColumnDef="cenaKarte">
+      <mat-header-cell *matHeaderCellDef>Cena karte</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.cenaKarte }}</mat-cell>
+    </ng-container>
+    <!--Datum-->
+    <ng-container matColumnDef="datum">
+      <mat-header-cell *matHeaderCellDef>Datum</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{
+        row.datum | date : "dd.MM.yyyy."
+      }}</mat-cell>
+    </ng-container>
+    <!--Placeno-->
+    <ng-container matColumnDef="placeno">
+      <mat-header-cell *matHeaderCellDef>Placeno</mat-header-cell>
+      <mat-cell
+        *matCellDef="let row"
+        [style.color]="row.placeno ? 'green' : 'red'"
+        >{{ row.placeno ? "Da" : "Ne" }}</mat-cell
+      >
+      <!--<mat-cell *matCellDef="let row">{{ row.placeno }}</mat-cell>-->
+    </ng-container>
+    <!--Film-->
+    <ng-container matColumnDef="film">
+      <mat-header-cell *matHeaderCellDef>Film</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.film.naziv }}</mat-cell>
+    </ng-container>
+    <!-- Action Buttons -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="accent" (click)="openDialog(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="
+            openDialog(
+              2,
+              row.id,
+              row.brojOsoba,
+              row.cenaKarte,
+              row.datum,
+              row.placeno,
+              row.film
+            )
+          "
+        >
+          <mat-icon color="primary" aria-label="Edit">edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="
+            openDialog(
+              3,
+              row.id,
+              row.brojOsoba,
+              row.cenaKarte,
+              row.datum,
+              row.placeno,
+              row.film
+            )
+          "
+        >
+          <mat-icon color="warn" aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      style="cursor: pointer"
+      *matRowDef="let row; columns: displayedColumns"
+    >
+    </mat-row>
+  </mat-table>
+</div>

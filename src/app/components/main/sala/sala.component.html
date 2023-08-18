@@ -1,0 +1,82 @@
+<mat-toolbar>
+  <!-- accent -->
+  <span class="title-center">Sala</span>
+</mat-toolbar>
+
+<div class="background-image"></div>
+
+<div class="container mat-elavation-z8">
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Pretraga sala"
+      name="filter"
+      (keyup)="applyFilter($event)"
+    />
+  </mat-form-field>
+  <mat-table #table [dataSource]="dataSource" class="mat-cell">
+    <!--ID-->
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.id }}</mat-cell>
+    </ng-container>
+    <!--Kapacitet-->
+    <ng-container matColumnDef="kapacitet">
+      <mat-header-cell *matHeaderCellDef>Kapacitet</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.kapacitet }}</mat-cell>
+    </ng-container>
+    <!--BrojRedova-->
+    <ng-container matColumnDef="brojRedova">
+      <mat-header-cell *matHeaderCellDef>Broj redova</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.brojRedova }}</mat-cell>
+    </ng-container>
+    <!--Bioskop-->
+    <ng-container matColumnDef="bioskop">
+      <mat-header-cell *matHeaderCellDef>Bioskop</mat-header-cell>
+      <mat-cell *matCellDef="let row">{{ row.bioskop.naziv }}</mat-cell>
+    </ng-container>
+    <!-- Action Buttons -->
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button color="accent" (click)="openDialog(1)">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="
+            openDialog(2, row.id, row.kapacitet, row.brojRedova, row.bioskop)
+          "
+        >
+          <mat-icon color="primary" aria-label="Edit">edit</mat-icon>
+        </button>
+        <button
+          mat-icon-button
+          color="primary"
+          (click)="
+            openDialog(3, row.id, row.kapacitet, row.brojRedova, row.bioskop)
+          "
+        >
+          <mat-icon color="warn" aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row
+      style="cursor: pointer"
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="selectRow(row)"
+    >
+    </mat-row>
+  </mat-table>
+</div>
+
+<div class="container mat-elavation-z8">
+  <app-rezervacija
+    *ngIf="parentSelectedSala"
+    [childSelectedSala]="parentSelectedSala"
+  >
+  </app-rezervacija>
+</div>

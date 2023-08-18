@@ -1,0 +1,85 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje sale</h3>
+  <h3 mat-dialog-title *ngIf="flag == 2">Ažuriranje sale: {{ data.id }}</h3>
+  <h3 mat-dialog-title *ngIf="flag == 3">Brisanje sale: {{ data.id }}</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <!-- class="form-field" -->
+        <input
+          matInput
+          placeholder="Kapacitet"
+          name="Kapacitet"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.kapacitet"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <!-- class="form-field" -->
+        <input
+          matInput
+          placeholder="BrojRedova"
+          name="BrojRedova"
+          [disabled]="flag == 3"
+          [(ngModel)]="data.brojRedova"
+          required
+        />
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-select
+        class="form-field"
+        [compareWith]="compare"
+        placeholder="Bioskop"
+        name="Bioskop"
+        [disabled]="flag == 3"
+        [(ngModel)]="data.bioskop"
+        required
+      >
+        <mat-option *ngFor="let bioskop of bioskopi" [value]="bioskop">
+          {{ bioskop.naziv }}
+        </mat-option>
+      </mat-select>
+    </div>
+  </form>
+
+  <div class="mat-dialog-actions">
+    <button
+      matButton
+      color="accent"
+      *ngIf="flag == 1"
+      type="submit"
+      mat-dialog-close="1"
+      [disabled]="!formControl.valid"
+      (click)="add()"
+    >
+      Sačuvaj
+    </button>
+    <button
+      matButton
+      color="accent"
+      *ngIf="flag == 2"
+      type="submit"
+      mat-dialog-close="1"
+      [disabled]="!formControl.valid"
+      (click)="update()"
+    >
+      Modifikuj
+    </button>
+    <button
+      matButton
+      color="accent"
+      *ngIf="flag == 3"
+      mat-dialog-close="1"
+      (click)="delete()"
+    >
+      Obriši
+    </button>
+    <button matButton color="warn" (click)="cancel()">Poništi</button>
+  </div>
+</div>

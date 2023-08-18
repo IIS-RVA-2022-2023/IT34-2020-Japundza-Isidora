@@ -1,0 +1,63 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  flex-grow: 1;
+  margin-top: 8px;
+}
+
+.no-result {
+  display: flex;
+  justify-content: center;
+  padding: 14px;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.mat-cell:nth-child(1),
+.mat-header-cell:nth-child(1) {
+  flex: 0 0 10%;
+}
+
+.mat-cell:nth-child(2),
+.mat-header-cell:nth-child(2) {
+  flex: 0 0 20%;
+}
+
+.mat-cell:nth-child(3),
+.mat-header-cell:nth-child(3) {
+  flex: 0 0 20%;
+}
+
+.mat-cell:nth-child(4),
+.mat-header-cell:nth-child(4) {
+  flex: 0 0 25%;
+}
+
+.mat-cell:nth-child(5),
+.mat-head-cell:nth-child(5) {
+  flex: 0 0 20%;
+}
+
+.title-center {
+  margin: 0 auto;
+}
+
+.mat-toolbar {
+  background-color: #927f16;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("C:\Users\Lenovo\Documents\workspace-spring-tool-suite-4-4.19.1.RELEASE\rva_IT34_2020\repository\IT-34-2020-FrontEnd\images\background.png");
+  background-size: cover;
+  filter: brightness(0.2);
+  z-index: -1;
+}

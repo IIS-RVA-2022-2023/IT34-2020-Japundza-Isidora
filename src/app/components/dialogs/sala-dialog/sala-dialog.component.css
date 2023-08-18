@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-width: 450px; /*bez*/
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+}
+
+.mat-form-field {
+  font-size: 16px;
+  flex-grow: 1;
+}
+
+/*
+ .form-field{
+    text-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+.mat-form-field{
+  .mat-dialog-actions{
+    margin-top: 20px;
+  }
+
+  .mat-form-field {
+    font-size: 16px;
+    flex-grow: 1;
+}
+mat-select{
+    max-width: 250px;
+  }
+
+  h3{
+    text-align: center;
+  }
+*/

@@ -1,0 +1,47 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav mode="over" [fixedInViewport]="true" opened mode="side">
+    <mat-accordion>
+      <a mat-button style="text-align: center" routerLink="/home">
+        <mat-icon>home</mat-icon>
+      </a>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="colorr">
+          <mat-panel-title> MovieTime Moments </mat-panel-title>
+          <mat-panel-description>
+            Evidencija neophodnih podataka
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a class="colorr" mat-stroked-button routerLink="/bioskop">Bioskop</a>
+          <!-- mat-raised-button -->
+          <!-- warn - accent - primary -->
+        </mat-nav-list>
+        <mat-nav-list>
+          <a class="colorr" mat-stroked-button routerLink="/film">Film</a>
+          <!-- mat-raised-button -->
+        </mat-nav-list>
+        <mat-nav-list>
+          <a class="colorr" mat-stroked-button routerLink="/sala">Sala</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header class="colorr">
+          <mat-panel-title> Informacije </mat-panel-title>
+          <mat-panel-description>
+            Osnovne informacije o aplikaciji
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a class="colorr" mat-button routerLink="/home">Početna</a>
+        </mat-nav-list>
+        <mat-nav-list>
+          <a class="colorr" mat-button routerLink="/about">O nama</a>
+        </mat-nav-list>
+        <mat-nav-list>
+          <a class="colorr" mat-button routerLink="/author">Autor</a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
