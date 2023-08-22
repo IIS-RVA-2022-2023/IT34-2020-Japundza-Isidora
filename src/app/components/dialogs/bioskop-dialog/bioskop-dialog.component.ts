@@ -10,7 +10,6 @@ import { BioskopService } from 'src/app/services/bioskop.service';
   styleUrls: ['./bioskop-dialog.component.css'],
 })
 export class BioskopDialogComponent {
-  // dependency inj se radi pomocu konstruktora u typescript-u
   flag!: number;
 
   constructor(
@@ -20,10 +19,15 @@ export class BioskopDialogComponent {
     public bioskopService: BioskopService
   ) {}
 
+  // ADD BIOSKOP
   public add(): void {
     this.bioskopService.addBioskop(this.data).subscribe(() => {
       this.snackBar.open(
-        'Bioskop sa nazivom: ' + this.data.naziv + ' je uspesno dodat!',
+        'Bioskop sa nazivom: ' +
+          '"' +
+          this.data.naziv +
+          '"' +
+          ' je uspesno dodat!',
         'OK',
         { duration: 4500 }
       );
@@ -34,10 +38,11 @@ export class BioskopDialogComponent {
       };
   }
 
+  // UPDATE BIOSKOP
   public update(): void {
     this.bioskopService.updateBioskop(this.data).subscribe(() => {
       this.snackBar.open(
-        'Bioskop sa ID: ' + this.data.id + ' je uspesno izmenjen!',
+        'Bioskop sa ID: ' + '"' + this.data.id + '"' + ' je uspesno izmenjen!',
         'OK',
         { duration: 4500 }
       );
@@ -48,6 +53,7 @@ export class BioskopDialogComponent {
       };
   }
 
+  // DELETE BIOSKOP
   public delete(): void {
     this.bioskopService.deleteBioskop(this.data.id).subscribe(() => {
       this.snackBar.open('Bioskop je izbrisan!', 'OK', { duration: 4500 });
@@ -58,6 +64,7 @@ export class BioskopDialogComponent {
       };
   }
 
+  // CANCEL
   public cancel(): void {
     this.dialogRef.close();
     this.snackBar.open('Odustali ste od izmena', 'Ok', { duration: 2500 });

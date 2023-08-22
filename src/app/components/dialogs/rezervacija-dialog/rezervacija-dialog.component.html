@@ -10,7 +10,6 @@
   <form class="mat-dialog-content" #formControl="ngForm">
     <div class="form">
       <mat-form-field>
-        <!-- class="form-field" -->
         <input
           matInput
           placeholder="Broj osoba"
@@ -24,7 +23,6 @@
 
     <div class="form">
       <mat-form-field>
-        <!-- class="form-field" -->
         <input
           matInput
           placeholder="Cena karte"
@@ -110,7 +108,6 @@
       *ngIf="flag == 3"
       type="submit"
       mat-dialog-close="1"
-      [disabled]="!formControl.valid"
       (click)="delete()"
     >
       Obrisi

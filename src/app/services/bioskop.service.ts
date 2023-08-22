@@ -9,10 +9,9 @@ import { Bioskop } from '../models/bioskop';
 })
 export class BioskopService {
   constructor(private httpClient: HttpClient) {}
-  //u konstruktoru se vrsi dependency injection
 
   public getAllBioskops(): Observable<any> {
-    return this.httpClient.get(`${BIOSKOP_URL}`); //moze i samo (BIOSKOP_URL)
+    return this.httpClient.get(`${BIOSKOP_URL}`);
   }
 
   public addBioskop(bioskop: Bioskop): Observable<any> {

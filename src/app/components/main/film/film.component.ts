@@ -28,7 +28,6 @@ export class FilmComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
-  //dijalog je ovo sto injekutujemo u konstruktoru a onaj dijalog sto smo kreirali je sadrzaj
   constructor(private filmService: FilmService, public dialog: MatDialog) {}
 
   ngOnDestroy(): void {
@@ -39,6 +38,7 @@ export class FilmComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
+  // LOAD DATA
   public loadData() {
     (this.subscription = this.filmService.getAllFilms().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -50,7 +50,7 @@ export class FilmComponent implements OnInit, OnDestroy {
       };
   }
 
-  // iz html-a prosledjujemo ove podatke dijalogu
+  // OPEN DIALOG
   public openDialog(
     flag: number,
     id?: number,
@@ -62,17 +62,15 @@ export class FilmComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(FilmDialogComponent, {
       data: { id, naziv, recenzija, trajanje, zanr },
     });
-    // otvara modalni dijalog odgovarajuce komponente
-    // vracamo instancu kreirane komponente dialoga
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe((result) => {
       if (result == 1) {
-        // uspesno
-        this.loadData(); // ponovo ucitaj podatke
+        this.loadData();
       }
     });
   }
 
+  // APPLY FILTER
   public applyFilter(filter: any) {
     filter = filter.target.value;
     filter = filter.trim();

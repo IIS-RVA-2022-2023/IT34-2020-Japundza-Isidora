@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Bioskop } from 'src/app/models/bioskop';
 import { Sala } from 'src/app/models/sala';
-import { BioskopService } from 'src/app/services/bioskop.service'; // ?
+import { BioskopService } from 'src/app/services/bioskop.service';
 import { SalaService } from 'src/app/services/sala.service';
 
 @Component({
@@ -29,13 +29,16 @@ export class SalaDialogComponent implements OnInit {
     });
   }
 
+  // ADD SALA
   public add(): void {
     this.salaService.addSala(this.data).subscribe(() => {
       this.snackBar.open(
         'Sala sa kapacitetom: ' +
           ' ' +
+          '"' +
           this.data.kapacitet +
-          ' je uspesno dodata!', // kapacitet npr?
+          '"' +
+          ' je uspesno dodata!',
         'Ok',
         { duration: 4500 }
       );
@@ -46,10 +49,11 @@ export class SalaDialogComponent implements OnInit {
       };
   }
 
+  // UPDATE SALA
   public update(): void {
     this.salaService.updateSala(this.data).subscribe(() => {
       this.snackBar.open(
-        'Sala sa ID: ' + this.data.id + ' je uspesno izmenjena!',
+        'Sala sa ID: ' + '"' + this.data.id + '"' + ' je uspesno izmenjena!',
         'OK',
         { duration: 4500 }
       );
@@ -60,6 +64,7 @@ export class SalaDialogComponent implements OnInit {
       };
   }
 
+  // DELETE SALA
   public delete(): void {
     this.salaService.deleteSala(this.data.id).subscribe(() => {
       this.snackBar.open('Sala je izbrisana!', 'OK', { duration: 4500 });
@@ -70,13 +75,14 @@ export class SalaDialogComponent implements OnInit {
       };
   }
 
+  // CANCEL
   public cancel(): void {
     this.dialogRef.close();
     this.snackBar.open('Odustali ste od izmena', 'Ok', { duration: 2500 });
   }
 
+  // COMPARE
   public compare(a: any, b: any) {
-    //?
     return a.id == b.id;
   }
 }

@@ -21,7 +21,6 @@ export class BioskopComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
 
-  //dijalog je ovo sto injekutujemo u konstruktoru a onaj dijalog sto smo kreirali je sadrzaj
   constructor(
     private bioskopService: BioskopService,
     public dialog: MatDialog
@@ -35,6 +34,7 @@ export class BioskopComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
+  // LOAD DATA
   public loadData() {
     (this.subscription = this.bioskopService
       .getAllBioskops()
@@ -48,6 +48,7 @@ export class BioskopComponent implements OnInit, OnDestroy {
       };
   }
 
+  // OPEN DIALOG
   public openDialog(
     flag: number,
     id?: number,
@@ -56,7 +57,6 @@ export class BioskopComponent implements OnInit, OnDestroy {
   ): void {
     const dialogRef = this.dialog.open(BioskopDialogComponent, {
       data: { id, naziv, adresa },
-      // data: (bioskop ? bioskop : new Bioskop())
     });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe((result) => {
@@ -66,6 +66,7 @@ export class BioskopComponent implements OnInit, OnDestroy {
     });
   }
 
+  // APPLY FILTER
   public applyFilter(filter: any) {
     filter = filter.target.value;
     filter = filter.trim();

@@ -10,7 +10,6 @@ import { FilmService } from 'src/app/services/film.service';
   styleUrls: ['./film-dialog.component.css'],
 })
 export class FilmDialogComponent {
-  // dependency inj se radi pomocu konstruktora u ts
   flag!: number;
 
   constructor(
@@ -20,10 +19,15 @@ export class FilmDialogComponent {
     public filmService: FilmService
   ) {}
 
+  // ADD FIlM
   public add(): void {
     this.filmService.addFilm(this.data).subscribe(() => {
       this.snackBar.open(
-        'Film sa nazivom: ' + this.data.naziv + ' je uspesno dodat!',
+        'Film sa nazivom: ' +
+          '"' +
+          this.data.naziv +
+          '"' +
+          ' je uspesno dodat!',
         'OK',
         { duration: 4500 }
       );
@@ -34,10 +38,11 @@ export class FilmDialogComponent {
       };
   }
 
+  // UPDATE BIOSKOP
   public update(): void {
     this.filmService.updateFilm(this.data).subscribe(() => {
       this.snackBar.open(
-        'Film sa ID: ' + this.data.id + ' je uspesno izmenjen!',
+        'Film sa ID: ' + '"' + this.data.id + '"' + ' je uspesno izmenjen!',
         'OK',
         { duration: 4500 }
       );
@@ -48,6 +53,7 @@ export class FilmDialogComponent {
       };
   }
 
+  // DELETE BIOSKOP
   public delete(): void {
     this.filmService.deleteFilm(this.data.id).subscribe(() => {
       this.snackBar.open('Film je izbrisan!', 'OK', { duration: 4500 });
@@ -58,6 +64,7 @@ export class FilmDialogComponent {
       };
   }
 
+  // CANCEL
   public cancel(): void {
     this.dialogRef.close();
     this.snackBar.open('Odustali ste od izmena', 'Ok', { duration: 2500 });

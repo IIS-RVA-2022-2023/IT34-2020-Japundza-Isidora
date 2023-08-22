@@ -19,7 +19,7 @@ export class SalaService {
   }
 
   public updateSala(sala: Sala): Observable<any> {
-    return this.httpClient.post(`${SALA_URL}/${sala.id}`, sala); //put?
+    return this.httpClient.put(`${SALA_URL}/${sala.id}`, sala);
   }
 
   public deleteSala(id: number): Observable<any> {

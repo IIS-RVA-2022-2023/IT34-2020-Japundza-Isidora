@@ -1,5 +1,5 @@
 export class Bioskop {
-  id!: number; //ili dodela vrednotsit ili uzvicnik
+  id!: number;
   naziv!: string;
   adresa!: string;
 }

@@ -40,7 +40,7 @@ import { RezervacijaDialogComponent } from './components/dialogs/rezervacija-dia
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
-import { RouterModule } from '@angular/router'; // dejana koristila kod 2. grupe
+import { RouterModule } from '@angular/router'; // Dejana 2. grupa
 
 @NgModule({
   declarations: [

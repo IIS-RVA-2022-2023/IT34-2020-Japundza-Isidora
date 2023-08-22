@@ -47,6 +47,7 @@ export class RezervacijaComponent implements OnChanges {
     this.loadData();
   }
 
+  // LOAD DATA
   public loadData() {
     (this.subscription = this.rezervacijaService
       .getRezervacijeForSala(this.childSelectedSala.id)
@@ -59,6 +60,7 @@ export class RezervacijaComponent implements OnChanges {
       };
   }
 
+  // OPEN DIALOG
   public openDialog(
     flag: number,
     id?: number,

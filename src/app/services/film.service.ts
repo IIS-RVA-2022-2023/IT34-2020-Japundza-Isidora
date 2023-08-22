@@ -16,24 +16,13 @@ export class FilmService {
 
   public addFilm(film: Film): Observable<any> {
     return this.httpClient.post(`${FILM_URL}`, film);
-  } // (DOBAVLJAC_URL, dobavljac)
-
-  /*
-  public addFilm(bioskop: Film): Observable<any> {
-    return this.httpClient.post(`${FILM_URL}`, bioskop);
   }
-  */
 
   public updateFilm(film: Film): Observable<any> {
     return this.httpClient.put(`${FILM_URL}/${film.id}`, film);
-  } // (DOBAVLJAC_URL + "/" + dobavljac.id, dobavljac)
-  /* 
-  public updateFilm(bioskop: Film): Observable<any> {
-    return this.httpClient.put(`${FILM_URL}/${bioskop.id}`, bioskop);
   }
-  */
 
   public deleteFilm(id: number): Observable<any> {
     return this.httpClient.delete(`${FILM_URL}/${id}`);
-  } // (DOBAVLJAC_URL + "/" + id)
+  }
 }

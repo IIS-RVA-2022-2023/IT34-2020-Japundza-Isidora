@@ -19,7 +19,6 @@ export class SalaComponent {
 
   parentSelectedSala!: Sala;
 
-  //dijalog je ovo sto injekutujemo u konstruktoru a onaj dijalog sto smo kreirali je sadrzaj
   constructor(private salaService: SalaService, public dialog: MatDialog) {}
 
   ngOnDestroy(): void {
@@ -30,6 +29,7 @@ export class SalaComponent {
     this.loadData();
   }
 
+  // LOAD DATA
   public loadData() {
     (this.subscription = this.salaService.getAllSalas().subscribe((data) => {
       this.dataSource = new MatTableDataSource(data);
@@ -40,6 +40,7 @@ export class SalaComponent {
       };
   }
 
+  // OPEN DIALOG
   public openDialog(
     flag: number,
     id?: number,
@@ -58,11 +59,13 @@ export class SalaComponent {
     });
   }
 
+  // SELECT ROW
   public selectRow(row: Sala) {
     this.parentSelectedSala = row;
     console.log(row);
   }
 
+  // APPLY FILTER
   public applyFilter(filter: any) {
     filter = filter.target.value;
     filter = filter.trim();
